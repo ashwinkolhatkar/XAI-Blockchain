@@ -1,0 +1,9 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+{% include 'navbar.html' %}
+<h5 style="padding-left: 10px;">{{ msg | safe }}</h5>
+
+<form action="mine_block" style="padding-left: 10px; padding-top: 10px;"> 
+    <button class="btn waves-effect waves-light red accent-3" type="submit" name="action">Mine Block
+        <i class="material-icons right"></i>
+    </button>
+</form>

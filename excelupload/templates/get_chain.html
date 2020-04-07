@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+{% include 'navbar.html' %}
+
+{% for chain in chains %}
+    <table border= 3 class="striped"> 
+        {% for key,value in chain.items() %}
+        <tr>
+            <th >{{key}}</th>
+            <td>{{value}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endfor %}
