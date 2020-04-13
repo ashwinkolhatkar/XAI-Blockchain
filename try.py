@@ -1,16 +1,10 @@
 from flask import Flask, render_template, request, jsonify
 import pandas as pd
 
-# import AI module
-# load trained module
-# predict fr 10 values
-# explainations fr 10 values
-# call
-
-#importing explainations generator module
+#IMPORTING EXPLAINATION GENERATOR MODULE
 import expgen
 
-#importing blockchain basics
+#IMPORTING BLOCKCHAIN REQUIREMENTS
 import datetime
 import hashlib
 import json
@@ -18,11 +12,7 @@ import requests
 from uuid import uuid4
 from urllib.parse import urlparse
 
-
-# res = expgen.test()
-# print(res)
-
-# Part 1 - Building a Blockchain
+# BUILDING THE BLOCKCHAIN
 
 class Blockchain:   
 
@@ -105,9 +95,9 @@ class Blockchain:
             return True
         return False
 
-# Part 2 - Mining our Blockchain
+# CREATING WEBAPP
 
-# Creating a Blockchain
+# CREATING THE BLOCKCHAIN
 blockchain = Blockchain()
 
 app = Flask(__name__)
@@ -158,7 +148,7 @@ def data2():
         excelDataTranspose = excelData.T
         return (render_template('data2.html', data=excelDataTranspose.to_html()))
 
-#testing data
+#TESTING DATA
 @app.route('/test')
 def test():
     global excelData
@@ -167,17 +157,16 @@ def test():
         print(x)
     return "All OK",200
 
-#Parsing the urls
+#PARSING THE URLs
 node_address = str(uuid4()).replace('-','')
 
-# Mining a new block
+# MINING A NEW BLOCK
 @app.route('/mine_block', methods = ['GET'])
 def mine_block():
     previous_block = blockchain.get_previous_block()
     previous_proof = previous_block['proof']
     proof = blockchain.proof_of_work(previous_proof)
     previous_hash = blockchain.hash(previous_block)
-    # blockchain.add_transactions( transaction_keys, dataDict )
     block = blockchain.create_block(proof, previous_hash)
     response = {'message': 'Congratulations, you just mined a block!',
                 'index': block['index'],
@@ -186,16 +175,16 @@ def mine_block():
                 'previous_hash': block['previous_hash'],
                 'transactions': block['transactions']}
     return  (render_template('mine_block.html', block=response)), 200
-    #jsonify(response)
 
-# Getting the full Blockchain
+
+# GETTING THE FULL BLOCKCHAIN
 @app.route('/get_chain', methods = ['GET'])
 def get_chain():
     response = {'chain': blockchain.chain,
                 'length': len(blockchain.chain)}
     return (render_template('get_chain.html', chains=response['chain'])), 200
-    # jsonify(response)
-# Checking if the Blockchain is valid
+  
+#CHECKING IF THE BLOCKCHAIN IS VALID
 @app.route('/is_valid', methods = ['GET'])
 def is_valid():
     is_valid = blockchain.is_chain_valid(blockchain.chain)
@@ -219,11 +208,9 @@ def add_transaction():
 
         if not all (key in dataDict for key in transaction_keys):
             return "Some keys are missing", 400
-        # index = blockchain.add_transactions(json['sender'],json['receiver'], json['amount'])
         index = blockchain.add_transactions(transaction_keys, dataDict)
         response = {'message': f'This transaction will be added to block #{index}'}
         return (render_template('add_transaction.html', msg=response['message']))
-        # jsonify(response)
 
 @app.route('/connect_node', methods = ['POST'])
 def connect_node():
