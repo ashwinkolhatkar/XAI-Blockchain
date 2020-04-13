@@ -6,8 +6,13 @@
     <table border= 3 class="striped"> 
         {% for key,value in chain.items() %}
         <tr>
-            <th >{{key}}</th>
-            <td>{{value}}</td>
+            {% if key == "index" %}
+                <th style="color: brown;">{{key}}</th>
+                <td>{{value}}</td>
+            {% else %}
+                <th>{{key}}</th>
+                <td>{{value}}</td>
+            {% endif %}
         </tr>
         {% endfor %}
     </table>
