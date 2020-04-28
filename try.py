@@ -76,7 +76,7 @@ class Blockchain:
     
     def add_node(self, address):
         parsed_url = urlparse(address)
-        self.nodes.add(parsed_url.netloc)
+        self.node.add(parsed_url.netloc)
         
     def replace_chain(self):
         network = self.node
@@ -132,7 +132,7 @@ def explainations():
         x = excelData.iloc[ind, 1:24]
         explaination = expgen.generate_exp1(x)
         explaination_list.append(explaination)
-    return (render_template('explainations.html', explainations = explaination_list)), 200
+    return (render_template('explainations.html', explainations = explaination_list, excelData = excelData)), 200
 
 #APPENDING EXPLAINATIONS AND DISPLAYING THE NEW DATA
 @app.route('/data2', methods=['GET', 'POST'])
@@ -221,7 +221,7 @@ def connect_node():
     for node in nodes:
         blockchain.add_node(node)
     response = {'message': 'Nodes added successfully. The nodes in Xcoin are:',
-                'total_nodes': list(blockchain.nodes)}
+                'total_nodes': list(blockchain.node)}
     return jsonify(response), 201
     
 @app.route('/replace_chain', methods = ['GET'])

@@ -3,7 +3,7 @@
 
 <form class="" action="data2" method="post" style="padding-left: 10px;">
     {% for user in explainations %}
-        <h5>Explaination for User: {{ explainations.index(user) }} </h5>
+        <h5>Explaination for User: {{ excelData.at[explainations.index(user), 'UserID'] }} </h5>
         <p>{{ user }}</p >
         <br>
     {% endfor %}
