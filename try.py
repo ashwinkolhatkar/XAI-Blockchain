@@ -93,7 +93,7 @@ class Blockchain:
                     longest_chain = chain
         if longest_chain:
             return True
-        return False
+        return False   
 
 # CREATING WEBAPP
 
@@ -147,6 +147,56 @@ def data2():
         explaination_list.clear()
         excelDataTranspose = excelData.T
         return (render_template('data2.html', data=excelDataTranspose.to_html()))
+
+# REQUESTING BLOCK
+@app.route('/request_block', methods=['GET', 'POST'])
+def request_block():
+    return render_template('request_block.html')
+
+# GETTING SPECIFIC BLOCK
+@app.route('/get_block', methods=['POST'])
+def get_block():
+    block_number = request.form['block_number']
+    block_number = int(block_number)
+    # GETTING ALL THE BLOCKS IN THE BLOCKCHAIN
+    chain = blockchain.chain
+    for block in chain:
+        if block_number == block['index']:
+            return render_template('get_block.html', block = block, message = "Block Found")
+    return render_template('get_block.html', message = "Block Not Found")
+
+
+#REQUESTING SPECIFIC USER
+@app.route('/request_user', methods=['GET', 'POST'])
+def request_user():
+    return render_template('request_user.html')
+
+#GETTING SPECIFIC USER
+@app.route('/get_user', methods=['POST'])
+def get_user():
+    user_id = int(request.form['user_id'])
+    chain = blockchain.chain
+    for block in chain:
+        a = block['transactions']
+        for item in range(len(a)):
+            if isinstance(a[item], dict):
+                    for p,v in iteritems_recursive(a[item]):
+                        # print(p, "->", v)
+                        if p == "UserID":
+                            if v == user_id:
+                                print("User Id Found")
+                                print(p, "->", v)
+                                print(a[item]) #displays full block containing the user ID
+    return render_template('get_user.html', message = 'User Not Found')
+
+def iteritems_recursive(d):
+  for k,v in d.items():
+    if isinstance(v, dict):
+      for k1,v1 in iteritems_recursive(v):
+        yield k1, v1
+    else:
+      yield (k),v
+
 
 #TESTING DATA
 @app.route('/test')
