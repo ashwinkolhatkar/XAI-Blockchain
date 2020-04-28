@@ -70,7 +70,8 @@ class Blockchain:
     
     def add_transactions (self, transaction_keys, dataDict):
         self.transactions.append(transaction_keys)
-        self.transactions.append(dataDict)
+        for key, value in dataDict.items():
+            self.transactions.append(dataDict[key])
         prev_block = self.get_previous_block()
         return prev_block['index'] + 1
     
@@ -143,7 +144,7 @@ def data2():
         global excelDataTranspose
         print(len(explaination_list))
         print(len(excelData.index))
-        excelData['Explainations'] = explaination_list
+        excelData['Explanations'] = explaination_list
         explaination_list.clear()
         excelDataTranspose = excelData.T
         return (render_template('data2.html', data=excelDataTranspose.to_html()))
@@ -179,23 +180,19 @@ def get_user():
     for block in chain:
         a = block['transactions']
         for item in range(len(a)):
+            # print(a[item], type(a[item]))
             if isinstance(a[item], dict):
-                    for p,v in iteritems_recursive(a[item]):
-                        # print(p, "->", v)
-                        if p == "UserID":
-                            if v == user_id:
-                                print("User Id Found")
-                                print(p, "->", v)
-                                print(a[item]) #displays full block containing the user ID
-    return render_template('get_user.html', message = 'User Not Found')
+                # print(a[item])
+                # print('\n\n')
+                for key, value in a[item].items():
+                    if key == "UserID":
+                        if value == user_id:
+                            print("User Found", key, value)
+                            return render_template('/get_user.html', user_details = a[item],
+                                                    message = "User Found in Block Number",
+                                                    block_number = block['index'])
+    return render_template('get_user.html', message = 'User Not Found in any block')
 
-def iteritems_recursive(d):
-  for k,v in d.items():
-    if isinstance(v, dict):
-      for k1,v1 in iteritems_recursive(v):
-        yield k1, v1
-    else:
-      yield (k),v
 
 
 #TESTING DATA
@@ -270,7 +267,7 @@ def connect_node():
         return 'No Node', 400
     for node in nodes:
         blockchain.add_node(node)
-    response = {'message': 'Nodes added successfully. The nodes in Xcoin are:',
+    response = {'message': 'Nodes added successfully. The nodes in Blockchain are:',
                 'total_nodes': list(blockchain.node)}
     return jsonify(response), 201
     

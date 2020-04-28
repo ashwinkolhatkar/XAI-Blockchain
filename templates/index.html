@@ -3,18 +3,51 @@
 {% include 'navbar.html' %}
 
 <form class="" action="data" method="post" class="center" style="padding-top: 10px; padding-left: 10px;">
-  <input type="file" name="upload-file" value="" class="waves-effect waves-light btn red accent-3" class="center-align">
-  <input type="submit" name="" action="add_transaction" value="Submit" class="waves-effect waves-light btn red accent-3">
+  <input type="file" name="upload-file" value="" class="waves-effect waves-light btn red darken-3" class="center-align">
+  <input type="submit" name="" action="add_transaction" value="Submit" class="waves-effect waves-light btn red darken-3">
 </form>
 
-<form action="get_chain" style="padding-left: 10px;">
-  <input type="submit" name="" action="get_chain" value="Get Full Chain" class="waves-effect waves-light btn red darken-3">
-</form>
 
-<form action="request_block" style="padding-left: 10px;">
-  <input type="submit" name="" id="" action="request_block" value="Get Specific Block" class="waves-effect waves-light btn red darken-3">
-</form>
+<div class="row">
+  <div class="col s12 m4">
+    <div class="card red darken-1">
+      <div class="card-content white-text center">
+        <div class="card-action">
+          <span class="card-title">User</span>
+          <form action="request_user" style="padding-left: 10px;">
+            <input type="submit" name="" id="" action="request_user" value="Get Specific User" class="waves-effect waves-light btn red darken-3">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<form action="request_user" style="padding-left: 10px;">
-  <input type="submit" name="" id="" action="request_user" value="Get Specific User" class="waves-effect waves-light btn red darken-3">
-</form>
+  <div class="col s12 m4">
+    <div class="card red darken-1">
+      <div class="card-content white-text center">
+        <div class="card-action">
+          <span class="card-title">Block</span>
+          <form action="request_block" style="padding-left: 10px;">
+            <input type="submit" name="" id="" action="request_block" value="Get Specific Block" class="waves-effect waves-light btn red darken-3">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col s12 m4">
+    <div class="card red darken-1">
+      <div class="card-content white-text center">
+        <div class="card-action">
+          <span class="card-title">Chain</span>
+          <form action="get_chain" style="padding-left: 10px;">
+            <input type="submit" name="" action="get_chain" value="Get Full Chain" class="waves-effect waves-light btn red darken-3">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+          
