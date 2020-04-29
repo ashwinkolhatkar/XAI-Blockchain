@@ -2,52 +2,77 @@
 
 {% include 'navbar.html' %}
 
-<form class="" action="data" method="post" class="center" style="padding-top: 10px; padding-left: 10px;">
-  <input type="file" name="upload-file" value="" class="waves-effect waves-light btn red darken-3" class="center-align">
-  <input type="submit" name="" action="add_transaction" value="Submit" class="waves-effect waves-light btn red darken-3">
-</form>
+<style>
+  body {
+    background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.scalevp.com%2Fsites%2Fdefault%2Ffiles%2Fdesignbig.jpg&f=1&nofb=1');
+  }
+  img{
+    height: 50px;
+    width: 50px;
+  }
+  </style> 
+<body>
+  
+  <div class="row">
+    <div class="col s12">
+      <div class="card red">
+        <div class="center">
+          <img src="https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Ficons.iconarchive.com%2Ficons%2Fgraphicloads%2F100-flat-2%2F256%2Farrow-upload-icon.png&f=1&nofb=1">
+        </div>
+          <div class="card-content white-text center">
+            <span class="card-title">Upload File for Generating Explanations</span>
+          <div class="card-action">
+            <form class="" action="data" method="post" class="center" style="padding-top: 10px; padding-left: 10px;">
+              <input type="file" name="upload-file" value="" class="waves-effect waves-light btn red darken-3" class="center-align">
+              <input type="submit" name="" action="add_transaction" value="Submit" class="waves-effect waves-light btn red darken-3">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-
-<div class="row">
-  <div class="col s12 m4">
-    <div class="card red darken-1">
-      <div class="card-content white-text center">
-        <div class="card-action">
+  <div class="row">
+    <div class="col s12 m4">
+      <div class="card red darken-1">
+        <div class="card-content white-text center">
           <span class="card-title">User</span>
-          <form action="request_user" style="padding-left: 10px;">
-            <input type="submit" name="" id="" action="request_user" value="Get Specific User" class="waves-effect waves-light btn red darken-3">
-          </form>
+          <div class="card-action">
+            <form action="request_user" style="padding-left: 10px;">
+              <input type="submit" name="" id="" action="request_user" value="Get Specific User" class="waves-effect waves-light btn red darken-3">
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="col s12 m4">
-    <div class="card red darken-1">
-      <div class="card-content white-text center">
-        <div class="card-action">
+    <div class="col s12 m4">
+      <div class="card red darken-1">
+        <div class="card-content white-text center">
           <span class="card-title">Block</span>
-          <form action="request_block" style="padding-left: 10px;">
-            <input type="submit" name="" id="" action="request_block" value="Get Specific Block" class="waves-effect waves-light btn red darken-3">
-          </form>
+          <div class="card-action">
+            <form action="request_block" style="padding-left: 10px;">
+              <input type="submit" name="" id="" action="request_block" value="Get Specific Block" class="waves-effect waves-light btn red darken-3">
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
 
-  <div class="col s12 m4">
-    <div class="card red darken-1">
-      <div class="card-content white-text center">
-        <div class="card-action">
+    <div class="col s12 m4">
+      <div class="card red darken-1">
+        <div class="card-content white-text center">
           <span class="card-title">Chain</span>
-          <form action="get_chain" style="padding-left: 10px;">
-            <input type="submit" name="" action="get_chain" value="Get Full Chain" class="waves-effect waves-light btn red darken-3">
-          </form>
+          <div class="card-action">
+            <form action="get_chain" style="padding-left: 10px;">
+              <input type="submit" name="" action="get_chain" value="Get Full Chain" class="waves-effect waves-light btn red darken-3">
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-</div>
+  </div>
+</body>
           
