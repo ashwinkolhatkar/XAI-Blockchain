@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+{% include 'navbar.html' %}
+<style>
+    body {
+      background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.scalevp.com%2Fsites%2Fdefault%2Ffiles%2Fdesignbig.jpg&f=1&nofb=1');
+      background-position: bottom;
+      background-repeat: no-repeat;
+    }
+    </style> 
+<body>
+    <h5>{{ message }} {% if block_number %}{{ block_number }}{%endif%}</h5>
+    <br>
+
+    <style>
+        th {
+            padding: 10px 15px;
+            text-align: left;
+            width: auto;
+        }
+
+        td{
+            padding: 10px 15px;
+            text-align: left;
+            width: 1000px;
+        }
+
+        table {
+            table-layout: fixed;
+            
+        }
+    </style>
+
+    {%if user_details %}
+        {% for k in user_details.keys()%}
+            <table>
+                <tr>
+                    {% if k == "UserID"%}
+                        <th style="color: rgb(216, 48, 48);">{{k}}</th>
+                        <td>{{user_details[k]}}</td>
+                    {% else %}
+                        <th style="color: black;">{{k}}</th>
+                        <td>{{user_details[k]}}</td>
+                    {%endif%}
+                </tr>
+            </table>
+        {% endfor %}
+    {%endif%}
+</body>
+
+

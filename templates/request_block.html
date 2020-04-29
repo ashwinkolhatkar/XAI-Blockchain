@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+{% include 'navbar.html' %}
+<style>
+    body {
+      background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.scalevp.com%2Fsites%2Fdefault%2Ffiles%2Fdesignbig.jpg&f=1&nofb=1');
+    }
+    </style> 
+<body>
+    <form action="get_block" method="POST" style="padding-top: 10px; padding-left: 10px;">
+        <input type="number" id="quantity" name="block_number" placeholder="Enter Block Number">
+        <input type="submit" name="" action="get_block" value="Submit" class="waves-effect waves-light btn red darken-3">
+    </form>
+</body>

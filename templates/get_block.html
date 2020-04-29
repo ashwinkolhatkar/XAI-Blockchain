@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+{% include 'navbar.html' %}
+
+<style>
+    body {
+      background: url('https://i.ibb.co/1RnyLVC/stack.jpg');
+      background-repeat: repeat-y;
+    }
+    </style> 
+<body>
+    <h5>{{ message }}</h5>
+    <br>
+
+    {% if block %}
+        <table border= "3px" class="striped"> 
+            {% for key,value in block.items() %}
+            <tr>
+                {% if key == "index" %}
+                    <th style="color: brown;">{{key}}</th>
+                    <td>{{value}}</td>
+                {% else %}
+                    <th>{{key}}</th>
+                    <td>{{value}}</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+    {%endif%}
+</body>
