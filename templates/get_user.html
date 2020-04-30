@@ -2,17 +2,10 @@
 {% include 'navbar.html' %}
 <style>
     body {
-      background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.scalevp.com%2Fsites%2Fdefault%2Ffiles%2Fdesignbig.jpg&f=1&nofb=1');
-      background-position: bottom;
-      background-repeat: no-repeat;
+      background: url('https://i.ibb.co/1RnyLVC/stack.jpg');
+      background-repeat: repeat-y;
     }
-    </style> 
-<body>
-    <h5>{{ message }} {% if block_number %}{{ block_number }}{%endif%}</h5>
-    <br>
-
-    <style>
-        th {
+    th {
             padding: 10px 15px;
             text-align: left;
             width: auto;
@@ -26,25 +19,41 @@
 
         table {
             table-layout: fixed;
-            
+            background: rgba(252, 252, 252, 0.2)
+        }
+        div.shadow{
+            box-shadow: 10px 10px 5px grey;
         }
     </style>
+     
+<body>
 
-    {%if user_details %}
-        {% for k in user_details.keys()%}
-            <table>
-                <tr>
-                    {% if k == "UserID"%}
-                        <th style="color: rgb(216, 48, 48);">{{k}}</th>
-                        <td>{{user_details[k]}}</td>
-                    {% else %}
-                        <th style="color: black;">{{k}}</th>
-                        <td>{{user_details[k]}}</td>
-                    {%endif%}
-                </tr>
-            </table>
+    {% for i in range(len_block)%}
+        {% for j in range(len_user)%}
+            {% for k in range(len_all_user_instances) %}
+                {% if k == j and k == i %}
+                    <div class="row red darken-3 shadow">                
+                        <h5 style="color: white">Block Number: {{all_user_instances[k]}}</h5>
+                        <h6 style="color: white">Block Created on {{block_timestamps[k]}}</h6>
+                    </div>
+                        {% for item in user_all_details[k].keys()%}
+                            <table>
+                                <tr>
+                                    {% if item == "UserID"%}
+                                        <th style="color: rgb(216, 48, 48);">{{item}}</th>
+                                        <td>{{user_all_details[k][item]}}</td>
+                                    {% else %}
+                                        <th style="color: black;">{{item}}</th>
+                                        <td>{{user_all_details[k][item]}}</td>
+                                    {%endif%}
+                                </tr>
+                            </table>
+                        {%endfor%}
+                    
+                {%endif%}
+            {% endfor %}
         {% endfor %}
-    {%endif%}
+    {% endfor %}
 </body>
 
 
