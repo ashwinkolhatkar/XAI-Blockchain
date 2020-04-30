@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+{% include 'navbar.html' %}
+
+<style>
+    body {
+      background: url('https://i.ibb.co/zRf7Mpc/stack-1.jpg');
+      background-position: bottom;
+      background-repeat: repeat-x;
+    }
+    </style> 
+<body>
+    <form class="" action="add_transaction" method="post" style="padding-left: 10px;">
+        <h5>Your data has been transposed and Explanations added</h5>
+        {{ data | safe }}
+        <input type="submit" name="" value="Add to Block" class="waves-effect waves-light btn red darken-3">
+    </form>
+</body>
+    

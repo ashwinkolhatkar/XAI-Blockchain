@@ -1,15 +1,21 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
 {% include 'navbar.html' %}
-
-<form action="get_chain" style="padding-left: 10px;"> 
-    <table border = 1 class="striped">
-        {% for key, value in block.items() %}
-        <tr>
-            <th> {{ key }} </th>
-            <td> {{ value }} </td>
-        </tr>
-        {% endfor %}
-    </table>
-    <input type="submit" value="Get Full Chain" class="waves-effect btn red accent-3">
-</form>
+<style>
+    body {
+      background: url('https://i.ibb.co/1RnyLVC/stack.jpg');
+    }
+    </style> 
+<body>
+    <form action="get_chain" style="padding-left: 10px;"> 
+        <table border = 1 class="striped">
+            {% for key, value in block.items() %}
+            <tr>
+                <th> {{ key }} </th>
+                <td> {{ value }} </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <input type="submit" value="Get Full Chain" class="waves-effect btn red darken-3">
+    </form>
+</body>

@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+{% include 'navbar.html' %}
+<style>
+    body {
+      background: url('https://i.ibb.co/1RnyLVC/stack.jpg');
+      background-repeat: repeat-y;
+    }
+    </style> 
+<body>
+    <form class="" action="data2" method="post" style="padding-left: 10px; background: rgba(252, 252, 252, 0.2)">
+        {% for user in explainations %}
+            <h5>Explanation for User: {{ excelData.at[explainations.index(user), 'UserID'] }} </h5>
+            <p>{{ user }}</p >
+            <br>
+        {% endfor %}
+        <input type="submit" name="" value="Add Explanations" class="waves-effect waves-light btn red darken-3">
+    </form>
+</body>

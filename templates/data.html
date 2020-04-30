@@ -1,8 +1,18 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 {% include 'navbar.html' %}
-<form class="" action="add_transaction" method="post" style="padding-left: 10px;">
-    {{ data | safe }}
-    <input type="submit" name="" value="Submit" class="waves-effect waves-light btn red accent-3">
-</form>
+<style>
+    body {
+      background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.scalevp.com%2Fsites%2Fdefault%2Ffiles%2Fdesignbig.jpg&f=1&nofb=1');
+      background-position: bottom;
+      background-repeat: no-repeat;
+    }
+    </style> 
+<body>
 
+    <form class="" action="explainations" method="post" style="padding-left: 10px;">
+        <h5>Your data has been transposed and then shown for ease of processing</h5>
+        {{ data | safe }}
+        <input type="submit" name="" value="Generate Explanations" class="waves-effect waves-light btn red darken-3">
+    </form>
 
+</body>

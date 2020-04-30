@@ -6,15 +6,15 @@ X_train = np.load('matrices/X_train.npy')
 X_test = np.load('matrices/X_test.npy')
 y_test = np.load('matrices/y_test.npy')
 
-print('Xtrain successfully loaded: ')
-print(X_train)
+# print('Xtrain successfully loaded: ')
+# print(X_train)
 
 # load the model from disk
 loaded_model = joblib.load('models/finalized_model.pkl')
 
-print('model successfully loaded: Score is-')
+# print('model successfully loaded: Score is-')
 result = loaded_model.score(X_test, y_test)
-print(result)
+# print(result)
 
 
 
@@ -59,8 +59,10 @@ def parse_explanation_list(exp_list):
 
 
 # TESTING OF MODULE
-print('X_test: ')
-print(X_test[1])
-res = generate_exp1(X_test[1]) # for testing purpose
-print('Explanation for row 5: ')
-print(res)
+def test():
+    print('X_test: ')
+    print(X_test[1])
+    res = generate_exp1(X_test[1]) # for testing purpose
+    print('Explanation for row 5: ')
+    print(res)
+    return res

@@ -5,13 +5,9 @@
       background: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.scalevp.com%2Fsites%2Fdefault%2Ffiles%2Fdesignbig.jpg&f=1&nofb=1');
     }
     </style> 
-
 <body>
-    <h5 style="padding-left: 10px;">{{ msg | safe }}</h5>
-
-    <form action="mine_block" style="padding-left: 10px; padding-top: 10px;"> 
-        <button class="btn waves-effect waves-light red darken-3" type="submit" name="action">Mine Block
-            <i class="material-icons right"></i>
-        </button>
-    </form>    
+    <form action="get_user" method="POST" style="padding-top: 10px; padding-left: 10px;">
+        <input type="number" id="quantity" name="user_id" placeholder="Enter User ID">
+        <input type="submit" name="" action="get_block" value="Submit" class="waves-effect waves-light btn red darken-3">
+    </form>
 </body>
