@@ -7,18 +7,25 @@ import numpy as np
 import pandas as pd
 import joblib
 
-df = pd.read_csv('data/clean_fico_data.csv')
+df = pd.read_csv('data/train/clean_fico_data_train.csv')
+
+testdf = pd.read_csv('data/test/clean_fico_data_test.csv')
 
 # Dividing Dataframe into target feature (Y) and predictor features (X)
-X = df.iloc[:, 1:24]
-y = df.iloc[:, 0]
+X_train = df.iloc[:, 1:24].to_numpy()
+y_train = df.iloc[:, 0].to_numpy()
 
 
 # Train Test Split
-from sklearn.model_selection import train_test_split
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+#from sklearn.model_selection import train_test_split
+#X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
+X_test = testdf.iloc[:, 1:24].to_numpy()
+y_test = testdf.iloc[:, 0].to_numpy()
 
+np.save('matrices/X_train.npy', X_train)
+np.save('matrices/X_test.npy', X_test)
+np.save('matrices/y_test.npy', y_test)
 
 # Feature Scaling
 from sklearn.preprocessing import StandardScaler
@@ -26,10 +33,6 @@ from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
-
-np.save('matrices/X_train.npy', X_train)
-np.save('matrices/X_test.npy', X_test)
-np.save('matrices/y_test.npy', y_test)
 
 # Random Forest Classifier
 from sklearn.ensemble import RandomForestClassifier
