@@ -142,10 +142,16 @@ def clear_exp():
 @app.route('/explainations', methods=['GET', 'POST'])
 def explainations():
     global explaination_list
+    count = 0
     for ind in excelData.index:
-        x = excelData.iloc[ind, 1:24]
-        explaination = expgen.generate_exp1(x)
+        x = excelData.iloc[ind, 2:25].values
+        explaination, pred_good = expgen.generate_exp1(x)
+        if(pred_good>0.5):
+            count = count +1
         explaination_list.append(explaination)
+    acc = count/(excelData.shape[0])
+    print("Accuracy is ", acc)
+    print("Shape", excelData.shape)
     return (render_template('explainations.html', explainations = explaination_list, excelData = excelData)), 200
 
 #APPENDING EXPLAINATIONS AND DISPLAYING THE NEW DATA

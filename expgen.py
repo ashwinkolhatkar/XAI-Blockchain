@@ -55,8 +55,8 @@ def generate_exp1(x_test):
     mapexp = exp.as_map()
     anchs_vec = mapexp[1]
 
-    strexp = exptext.generate_text_explanation(pred_good, x_test, anchs_vec)
-    return strexp
+    strexp = exptext.generate_text_explanation(pred_good, x_test, anchs_vec) 
+    return strexp, pred_good
 
 # TESTING OF MODULE
 def test():
