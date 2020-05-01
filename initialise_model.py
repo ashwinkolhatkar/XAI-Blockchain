@@ -23,9 +23,6 @@ y_train = df.iloc[:, 0].to_numpy()
 X_test = testdf.iloc[:, 1:24].to_numpy()
 y_test = testdf.iloc[:, 0].to_numpy()
 
-np.save('matrices/X_train.npy', X_train)
-np.save('matrices/X_test.npy', X_test)
-np.save('matrices/y_test.npy', y_test)
 
 # Feature Scaling
 from sklearn.preprocessing import StandardScaler
@@ -33,6 +30,10 @@ from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
+
+np.save('matrices/X_train.npy', X_train)
+np.save('matrices/X_test.npy', X_test)
+np.save('matrices/y_test.npy', y_test)
 
 # Random Forest Classifier
 from sklearn.ensemble import RandomForestClassifier
