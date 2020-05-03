@@ -15,8 +15,6 @@ loaded_model = joblib.load('models/finalized_model.pkl')
 result = loaded_model.score(X_test, y_test)
 
 
-
-
 import lime
 import lime.lime_tabular
 
@@ -28,7 +26,6 @@ feature_names = ['RiskPerformance', 'ExternalRiskEstimate', 'MSinceOldestTradeOp
 
 
 # Creating the LIME Explainer
-
 explainer = lime.lime_tabular.LimeTabularExplainer(X_train, feature_names = feature_names[1:], 
                                                    class_names = ["High Credit Risk", "Low Credit Risk"], 
                                                    verbose=True,
@@ -43,9 +40,7 @@ explainer = lime.lime_tabular.LimeTabularExplainer(X_train, feature_names = feat
 def generate_exp1(x_test):
     # Pick the observation for which validation is required
     pred = loaded_model.predict_proba(x_test.reshape(1, -1)).astype(float)
-    pred_good = float(pred[:,1])
-    
-    #print('PREDICION IS: '+ str(pred_good))
+    pred_good = pred[:,1]
     
     exp = explainer.explain_instance(x_test, 
                                     predict_fn_rf, 
@@ -56,18 +51,32 @@ def generate_exp1(x_test):
     anchs_vec = mapexp[1]
 
     strexp = exptext.generate_text_explanation(pred_good, x_test, anchs_vec) 
+    if pred_good>0.5:
+        pred_good = 1
+    else:
+        pred_good=0
+    # pred_good = np.array(np.greater(pred[:,1], 0.5), dtype=int)
     return strexp, pred_good
 
 # TESTING OF MODULE
 def test():
     print('**TEST**')
-    print('X_test: ')
-    print(X_test[1]) # you need to get original data from dataset
-    print('y_test: ')
-    print(y_test[1])
-    res = generate_exp1(X_test[1]) # for testing purpose
+    print(loaded_model.classes_)
+
+    res, pred_good = generate_exp1(X_test[1]) # for testing purpose
     print('Explanation for row 5: ')
     print(res)
+    print('predgood: ', pred_good)
+
+    count = 0
+    for i in range(0, len(y_test)):
+        res, pred_good = generate_exp1(X_test[i]) # for testing purpose
+        
+        if(pred_good==y_test[i]):
+            count = count+1
+    
+    acc = count/len(y_test)
+    print('Accuracy: ', acc)
     return
 
-test()
+#test()

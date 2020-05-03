@@ -8,7 +8,7 @@ def generate_text_explanation(per, sample, anchs_vec):
         text_string += "bad"
 
     percentage = per*100.
-    text_string += " and has a score of " + str(percentage) + "%\n\n"
+    text_string += " and has a score of " + str(float(percentage)) + "%\n\n"
 
     anchs_lst = []
 
