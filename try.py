@@ -145,8 +145,9 @@ def explainations():
     count = 0
     for ind in excelData.index:
         x = excelData.iloc[ind, 2:25].values
+        y = excelData.iloc[ind, 1]
         explaination, pred_good = expgen.generate_exp1(x)
-        if(pred_good>0.5):
+        if((pred_good>0.5 and y==1) or (pred_good<0.5 and y==0)): #correct observation
             count = count +1
         explaination_list.append(explaination)
     acc = count/(excelData.shape[0])
