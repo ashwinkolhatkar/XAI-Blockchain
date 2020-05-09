@@ -24,7 +24,8 @@ np.save('matrices/y_test.npy', y_test)
 
 # Random Forest Classifier
 from sklearn.ensemble import RandomForestClassifier
-clf = RandomForestClassifier(n_estimators=20) # n_estimators is the no. of trees in the random forest
+clf = RandomForestClassifier(n_estimators=70, min_samples_leaf=5, min_samples_split=5, max_depth=15) # MODEL WITH TUNED PARAMETERS
+# clf = RandomForestClassifier(n_estimators=20) # n_estimators is the no. of trees in the random forest
 clf.fit(X_train, y_train)
 y_pred = clf.predict_proba(X_test)
 y_predf = y_pred[:,1]>0.5 # change the string values in X?
